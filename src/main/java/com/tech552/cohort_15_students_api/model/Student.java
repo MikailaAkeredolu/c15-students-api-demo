@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Arrays;
+import java.util.List;
+
 //POJO - Plain old Java Object
 @Entity
 public class Student {
@@ -12,7 +15,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Name;
+    private String name;
 
     private Integer age;
 
@@ -29,11 +32,11 @@ public class Student {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Integer getAge() {
@@ -52,11 +55,24 @@ public class Student {
         this.nickName = nickName;
     }
 
-    public String[] getHobbies() {
+
+
+        public String[] getHobbies() {
         return hobbies;
     }
 
     public void setHobbies(String[] hobbies) {
         this.hobbies = hobbies;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", nickName='" + nickName + '\'' +
+                ", hobbies=" + Arrays.toString(hobbies) +
+                '}';
     }
 }
