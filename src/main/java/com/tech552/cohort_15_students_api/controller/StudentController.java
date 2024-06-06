@@ -3,12 +3,10 @@ package com.tech552.cohort_15_students_api.controller;
 import com.tech552.cohort_15_students_api.model.Student;
 import com.tech552.cohort_15_students_api.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 @RestController
 public class StudentController {
@@ -27,6 +25,24 @@ public class StudentController {
     public Iterable<Student> getAllStudents(){
         return studentService.getStudents();
     }
+
+    //Endpoint to delete a student
+    @DeleteMapping("/students/{id}")
+    public void deleteStudentById(@PathVariable Long id){
+         studentService.deleteStudent(id);
+    }
+
+    @GetMapping("/students/{id}")
+    public Optional<Student> getStudent(@PathVariable Long id){
+        return studentService.getStudentById(id);
+    }
+
+    @PutMapping("/students/{id}")
+    public void updateStudent(@PathVariable Long id, @RequestBody Student student ){
+        studentService.updateStudent(id, student);
+    }
+
+
 
 
 }
